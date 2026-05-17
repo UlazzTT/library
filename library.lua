@@ -185,7 +185,7 @@ local Library = {
 
     MinSize = Vector2.new(480, 360),
     DPIScale = 1,
-    CornerRadius = 4,
+    CornerRadius = 30,
 
     IsLightTheme = false,
     Scheme = {
@@ -281,7 +281,7 @@ local Templates = {
         Resizable = true,
         SearchbarSize = UDim2.fromScale(1, 1),
         GlobalSearch = false,
-        CornerRadius = 4,
+        CornerRadius = CornerRadius = 30,
         NotifySide = "Right",
         ShowCustomCursor = true,
         Font = Enum.Font.Code,
@@ -2212,10 +2212,10 @@ do
                 SizeConstraint = Enum.SizeConstraint.RelativeYY,
                 Parent = Holder,
             })
-            New("UICorner", {
-                CornerRadius = UDim.new(0, Library.CornerRadius / 2),
-                Parent = Checkbox,
-            })
+New("UICorner", {
+    CornerRadius = UDim.new(0, 15),
+    Parent = Checkbox,
+})            
             New("UIStroke", {
                 Color = "OutlineColor",
                 Parent = Checkbox,
@@ -3748,10 +3748,10 @@ do
             Size = UDim2.fromOffset(32, 18),
             Parent = Button,
         })
-        New("UICorner", {
-            CornerRadius = UDim.new(1, 0),
-            Parent = Switch,
-        })
+    New("UICorner", {
+    CornerRadius = UDim.new(0, 15),
+    Parent = Switch,
+})
         New("UIPadding", {
             PaddingBottom = UDim.new(0, 2),
             PaddingLeft = UDim.new(0, 2),
@@ -3770,11 +3770,10 @@ do
             SizeConstraint = Enum.SizeConstraint.RelativeYY,
             Parent = Switch,
         })
-        New("UICorner", {
-            CornerRadius = UDim.new(1, 0),
-            Parent = Ball,
-        })
-
+New("UICorner", {
+    CornerRadius = UDim.new(0, 15),
+    Parent = Ball,
+})
         function Toggle:UpdateColors()
             Toggle:Display()
         end
@@ -5865,8 +5864,9 @@ function Library:Notify(...)
 end
 
 function Library:CreateWindow(WindowInfo)
-    WindowInfo = Library:Validate(WindowInfo, Templates.Window)
-    local ViewportSize: Vector2 = workspace.CurrentCamera.ViewportSize
+WindowInfo = Library:Validate(WindowInfo, Templates.Window)
+WindowInfo.CornerRadius = 30
+local ViewportSize: Vector2 = workspace.CurrentCamera.ViewportSize
     if RunService:IsStudio() and ViewportSize.X <= 5 and ViewportSize.Y <= 5 then
         repeat
             ViewportSize = workspace.CurrentCamera.ViewportSize
